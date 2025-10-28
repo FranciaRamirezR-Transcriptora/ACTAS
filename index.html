@@ -872,6 +872,15 @@
             doc.setFont("Times", "normal");
             doc.setFontSize(11);
 
+<!-- 🔘 BOTÓN PARA ENVIAR LA COTIZACIÓN -->
+<div style="text-align: center; margin-top: 20px;">
+  <button type="button"
+          onclick="guardarRegistro()"
+          style="background-color:#2e4a62; color:white; padding:10px 25px; border:none; border-radius:8px; cursor:pointer; font-size:16px;">
+    💾 Guardar Cotización
+  </button>
+</div>
+
             const textoServicio = "Transcripción profesional del acta, garantizando precisión jurídica y estructura conforme a la Ley 675 de 2001. Confidencialidad y entrega oportuna.";
             const anchoMaximo = pdfWidth - 2 * margenX;
             let lineas = doc.splitTextToSize(textoServicio, anchoMaximo);
@@ -925,5 +934,41 @@
             doc.save(`Cotización_${document.getElementById("nombre").value.replace(/\s/g, '_')}.pdf`);
         }
     </script>
+<script>
+// ✅ FUNCIÓN PRINCIPAL: ENVÍA LOS DATOS DEL FORMULARIO A GOOGLE SHEETS
+async function guardarRegistro() {
+  console.log("✅ Botón presionado: enviando datos...");
+
+  // Recoger datos del formulario
+  const datos = {
+    nombre: document.getElementById("nombre")?.value || "",
+    unidad: document.getElementById("unidad")?.value || "",
+    correo: document.getElementById("correo")?.value || "",
+    telefono: document.getElementById("telefono")?.value || "",
+    fecha: new Date().toLocaleDateString(),
+    fechaActa: document.getElementById("fechaActa")?.value || "",
+    horas: document.getElementById("horas")?.value || "",
+    minutos: document.getElementById("minutos")?.value || "",
+    valor: document.getElementById("valor")?.innerText || ""
+  };
+
+  try {
+    // ⚠️ REEMPLAZA ESTO por tu URL /exec del script desplegado
+    const respuesta = await fetch("TU_URL_EXEC_AQUI", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datos)
+    });
+
+    const texto = await respuesta.text();
+    console.log("📩 Respuesta del servidor:", texto);
+    alert("✅ Cotización enviada correctamente. Revisa tu hoja de cálculo.");
+  } catch (error) {
+    console.error("❌ Error al enviar:", error);
+    alert("❌ No se pudo enviar la cotización. Verifica tu conexión.");
+  }
+}
+</script>
+
 </body>
 </html>
