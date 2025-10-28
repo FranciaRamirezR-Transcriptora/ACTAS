@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francia Ramírez | Trayectoria Profesional</title>
+    
+    <meta name="description" content="Conozca la trayectoria profesional de Francia Ramírez, enfocada en la rigurosidad, confidencialidad y cumplimiento en la transcripción de actas en Colombia.">
+    <meta name="keywords" content="experiencia, conjuntos residenciales, actas, asambleas, Ley 675, rigurosidad">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --------------------------------- */
+        /* 0. VARIABLES Y ESTILOS BASE (COPIADO de index.html) */
+        /* --------------------------------- */
+        :root {
+            --color-principal: #1e2a38;
+            --color-acento: #d4af37;
+            --color-fondo: #fdfaf7;
+            --color-texto: #2c2c2c;
+        }
+
+        body {
+            font-family: 'Georgia', serif; 
+            margin: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        h2, h3 {
+            color: var(--color-principal);
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER Y FOOTER (Mismo estilo que index.html) */
+        header {
+            background: linear-gradient(90deg, var(--color-principal) 0%, #24384e 100%);
+            padding: 15px 40px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+        }
+
+        header img {
+            height: 45px; 
+            border-radius: 50%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--color-acento);
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--color-acento);
+        }
+
+        .menu-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* FOOTER ESTILO RECOMENDADO */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--color-principal);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--color-acento);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --------------------------------- */
+        /* ESTILOS ESPECÍFICOS DE LA PÁGINA */
+        /* --------------------------------- */
+        .seccion-contenido {
+            padding: 80px 0;
+            min-height: 70vh;
+            text-align: center;
+        }
+        
+        .trayectoria-card {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .trayectoria-card h3 {
+            border-bottom: 2px solid var(--color-acento);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .pilar-item {
+            background-color: #f7f3ed;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0d8c7;
+        }
+
+        .pilar-item i {
+            font-size: 1.5rem;
+            color: var(--color-acento);
+            margin-right: 10px;
+        }
+        
+        .pilar-item p {
+            font-size: 0.95rem;
+        }
+        
+        /* RESPONSIVIDAD */
+        @media (max-width: 900px) {
+            nav { display: none; flex-direction: column; position: absolute; top: 70px; right: 0; width: 100%; background-color: var(--color-principal); box-shadow: 0 4px 5px rgba(0,0,0,0.2); }
+            nav.active { display: flex; }
+            nav a { margin: 10px 20px; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); width: calc(100% - 40px); text-align: left; }
+            .menu-toggle { display: block; }
+            header { padding: 10px 20px; }
+            .trayectoria-card { margin: 20px auto; padding: 25px; }
+            .pilares-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-box">
+            <img src="logo_francia.jpg" alt="Logo circular dorado con iniciales FR, de Francia Ramírez">
+            <h1>Francia Ramírez</h1>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Abrir menú de navegación">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav id="menu-principal" aria-label="Menú principal">
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#confianza">Confianza</a>
+            <a href="quiensoy.html">Quién soy</a>
+            <a href="trayectoria.html" style="color: var(--color-acento);">Trayectoria</a>
+            <a href="index.html" class="btn-cotizar-nav">Cotización</a> 
+            <a href="contacto.html">Contáctenos</a>
+        </nav>
+    </header>
+
+    <section class="seccion-contenido">
+        <div class="contenedor">
+            <h2><i class="fas fa-chart-line"></i> Trayectoria Profesional</h2>
+            
+            <div class="trayectoria-card">
+                <p>Durante los últimos años he trabajado junto a conjuntos residenciales, edificios y complejos mixtos en distintas ciudades de Colombia, brindando servicios de transcripción profesional a copropiedades de diversos tamaños, desde 50 hasta más de 250 unidades.</p>
+                
+                <h3><i class="fas fa-handshake"></i> Pilares de mi Servicio</h3>
+                
+                <div class="pilares-grid">
+                    <div class="pilar-item">
+                        <i class="fas fa-file-signature"></i>
+                        <h4>Rigurosidad</h4>
+                        <p>Cada acta se redacta siguiendo el orden del día y el desarrollo real de la asamblea, sin omisiones de fondo.</p>
+                    </div>
+                    <div class="pilar-item">
+                        <i class="fas fa-lock-open"></i>
+                        <h4>Confidencialidad</h4>
+                        <p>Trato cada grabación y documento con absoluta reserva, asegurando la protección de la información sensible de la copropiedad.</p>
+                    </div>
+                    <div class="pilar-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <h4>Cumplimiento</h4>
+                        <p>Entregas dentro de los plazos establecidos, con actas listas para ser firmadas y archivadas oficialmente.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 40px;">He desarrollado además material educativo sobre la Ley 675 de 2001, participando en proyectos formativos para administradores y consejos, con el propósito de mejorar la convivencia y la gestión documental en la propiedad horizontal.</p>
+                
+                <p>Mi experiencia no solo está en escribir, sino en **interpretar con criterio técnico y jurídico** las decisiones tomadas en cada reunión, asegurando que el acta final sea un reflejo fiel, ordenado y profesional.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <p>© 2025 Francia Ramírez | Transcriptora Profesional de Actas de Propiedad Horizontal</p>
+            <p>Todos los derechos reservados | Cali, Colombia</p>
+            <p>
+                ✉️ <a href="mailto:franciar814@gmail.com">franciar814@gmail.com</a> | 
+                📱 <a href="https://wa.me/573176344778">317 634 4778</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu-principal').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

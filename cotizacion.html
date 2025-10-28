@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Francia Ramírez</title>
+    <style>
+        /* --------------------------------- */
+        /* BASE DE ESTILOS Y TIPOGRAFÍA */
+        /* --------------------------------- */
+        body {
+            font-family: 'Georgia', serif;
+            /* Se mantiene el gradiente de fondo profesional */
+            background: linear-gradient(180deg, #d6b98c 0%, #f6ead5 100%);
+            color: #2e2b25;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #bfa76f;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #3a2f1f;
+            font-size: 14px;
+        }
+
+        /* --------------------------------- */
+        /* ESTILOS DE FORMULARIO MEJORADOS */
+        /* --------------------------------- */
+        input, select {
+            width: 100%;
+            /* Aumento el padding vertical (10px) para mejor usabilidad táctil */
+            padding: 10px 8px; 
+            border: 1px solid #c5a05a;
+            border-radius: 6px;
+            margin-top: 4px;
+            font-size: 14px;
+            box-sizing: border-box; /* Crucial para que padding y border no aumenten el ancho */
+        }
+        
+        /* 💡 ESTILO NUEVO: Para campos no editables (e.g., Fecha actual) */
+        input[readonly] {
+            background-color: #f0f0f0; 
+            cursor: default;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row div {
+            flex: 1;
+        }
+
+        /* --------------------------------- */
+        /* ESTILOS DE BOTONES */
+        /* --------------------------------- */
+        button {
+            background-color: #bfa76f;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+            flex-grow: 1; 
+        }
+
+        button:hover {
+            background-color: #a8905e;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap; /* Permite que los botones salten de línea en pantallas pequeñas */
+        }
+        
+        .buttons button {
+            min-width: 48%; /* Intenta mantener dos botones por fila si hay espacio */
+        }
+
+        .valor {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #3a2f1f;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: #4b3b2a;
+            margin-top: 30px;
+        }
+
+        /* --------------------------------- */
+        /* 📱 MEDIA QUERIES (RESPONSIVIDAD) */
+        /* --------------------------------- */
+
+        /* Para celulares (ancho máximo 600px) */
+        @media (max-width: 600px) {
+            
+            .container {
+                /* Reduce el margen exterior y el padding interior */
+                margin: 20px 10px; 
+                padding: 20px 15px; 
+            }
+
+            /* 💡 MODIFICACIÓN: Apila Horas y Minutos verticalmente para mejor toque */
+            .row {
+                flex-direction: column; 
+                gap: 0;
+            }
+            .row div {
+                flex: none; 
+            }
+            
+            /* 💡 MODIFICACIÓN: Los botones ocupan el ancho completo en móviles */
+            .buttons button {
+                min-width: 100%; 
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Para tablets (entre 601px y 768px) */
+        @media (min-width: 601px) and (max-width: 768px) {
+             .container {
+                margin: 30px 20px; 
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Cotización</h1>
+
+        <form id="cotizacionForm">
+            <label>Nombre completo *</label>
+            <input type="text" id="nombre" required>
+
+            <label>Unidad residencial (opcional)</label>
+            <input type="text" id="unidad">
+
+            <label>Correo electrónico *</label>
+            <input type="email" id="correo" required>
+
+            <label>Teléfono *</label>
+            <input type="tel" id="telefono" required>
+
+            <label>Fecha actual</label>
+            <input type="date" id="fecha" readonly> 
+
+            <label>Fecha del acta (opcional)</label>
+            <input type="date" id="fechaActa">
+
+            <div class="row">
+                <div>
+                    <label>Horas *</label>
+                    <input type="number" id="horas" min="0" required>
+                </div>
+                <div>
+                    <label>Minutos *</label>
+                    <input type="number" id="minutos" min="0" max="59" required>
+                </div>
+            </div>
+
+            <button type="button" onclick="calcularValor()">Calcular valor</button>
+
+            <div class="valor" id="resultado"></div>
+
+            <div class="buttons">
+                <button type="button" onclick="descargarPDF()">Descargar cotización</button>
+                <button type="button" onclick="window.open('https://wa.me/573176344778','_blank')">WhatsApp</button>
+                <button type="button" onclick="window.location.href='index.html'">Inicio</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        Francia Ramírez R. – Transcriptora Profesional de Reuniones Grabadas<br>
+        Especialista en Propiedad Horizontal – Cali, Colombia
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        document.getElementById("fecha").value = new Date().toLocaleDateString("es-CO");
+
+        function validarCampos() {
+            const campos = ["nombre", "correo", "telefono", "horas", "minutos"];
+            for (let id of campos) {
+                if (!document.getElementById(id).value.trim()) {
+                    alert("Por favor complete todos los campos obligatorios antes de continuar.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function calcularValor() {
+            if (!validarCampos()) return;
+
+            const horas = parseFloat(document.getElementById("horas").value) || 0;
+            const minutos = parseFloat(document.getElementById("minutos").value) || 0;
+            const totalHoras = horas + minutos / 60;
+            let valor = 0;
+
+            if (totalHoras <= 1) valor = 39000;
+            else if (totalHoras <= 3) valor = 95000;
+            // Lógica de cálculo por tramos: Math.ceil garantiza que fracciones se redondeen al siguiente tramo de 30 min.
+            else valor = 95000 + Math.ceil((totalHoras - 3) * 2) * 10000;
+
+            document.getElementById("resultado").innerText =
+                `💰 Valor estimado: $${valor.toLocaleString("es-CO")}`;
+
+            guardarRegistro(valor);
+        }
+
+        async function guardarRegistro(valor) {
+            const data = {
+                nombre: document.getElementById("nombre").value,
+                unidad: document.getElementById("unidad").value,
+                correo: document.getElementById("correo").value,
+                telefono: document.getElementById("telefono").value,
+                fecha: document.getElementById("fecha").value,
+                fechaActa: document.getElementById("fechaActa").value,
+                horas: document.getElementById("horas").value,
+                minutos: document.getElementById("minutos").value,
+                valor
+            };
+
+            try {
+                // URL de tu Google App Script (backend sin servidor)
+                await fetch("https://script.google.com/macros/s/AKfycbzYqnewJYkEIO626rz1CGl-xsB5_SpOnZ1WxR8dQPY/exec", {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: { "Content-Type": "application/json" }
+                });
+            } catch (e) {
+                console.error("Error al guardar el registro:", e);
+            }
+        }
+
+        async function descargarPDF() {
+            // 1. Validar campos obligatorios
+            if (!validarCampos()) return;
+
+            // 2. 💡 CORRECCIÓN CRUCIAL: Llamamos a calcularValor() para asegurar que el valor esté en el DOM y el registro se guarde.
+            calcularValor(); 
+
+            const valorTexto = document.getElementById("resultado").innerText;
+            if (!valorTexto.includes("Valor estimado")) {
+                alert("El valor estimado no ha sido calculado. Intente de nuevo.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: "mm", format: "a4" });
+
+            const margen = 20;
+            let y = margen + 10;
+
+            // ... Lógica de generación del PDF ...
+
+            // ENCABEZADO
+            doc.setFont("Times", "bold");
+            doc.setFontSize(14);
+            doc.text("COTIZACIÓN DE SERVICIO PROFESIONAL – FRANCIA RAMÍREZ R.", 105, y, { align: "center" });
+
+            y += 15;
+            doc.setFontSize(12);
+            doc.setFont("Times", "normal");
+            doc.text(`Fecha de cotización: ${document.getElementById("fecha").value}`, margen, y);
+            y += 8;
+            doc.text(`Nombre del solicitante: ${document.getElementById("nombre").value}`, margen, y);
+            y += 8;
+            doc.text(`Unidad residencial: ${document.getElementById("unidad").value || "No especificada"}`, margen, y);
+            y += 8;
+            doc.text(`Correo electrónico: ${document.getElementById("correo").value}`, margen, y);
+            y += 8;
+            doc.text(`Teléfono: ${document.getElementById("telefono").value}`, margen, y);
+            y += 8;
+            doc.text(`Fecha del acta: ${document.getElementById("fechaActa").value || "No indicada"}`, margen, y);
+            y += 8;
+            doc.text(`Duración del audio: ${document.getElementById("horas").value}h ${document.getElementById("minutos").value}min`, margen, y);
+
+            // Valor calculado
+            y += 10;
+            doc.setFont("Times", "bold");
+            doc.text(valorTexto, margen, y);
+            doc.setFont("Times", "normal");
+
+            y += 15;
+
+            // CONTENIDO PRINCIPAL — DESCRIPCIÓN DEL SERVICIO
+            const texto = `
+Transcripción profesional del acta correspondiente a la [Asamblea General / Consejo de Administración], a partir del audio oficial suministrado por la copropiedad.
+
+Cada acta es redactada con lenguaje formal, precisión jurídica y estructura conforme a 
+la Ley 675 de 2001, garantizando fidelidad al contenido grabado y presentación clara 
+para archivo o aprobación.
+
+Condiciones del Servicio
+Se solicita un anticipo del 50 % para iniciar el trabajo, calculado sobre la longitud 
+del audio base. La confirmación del servicio se realiza mediante el envío del comprobante 
+de transferencia al WhatsApp 317 634 4778. El documento final se entrega en 
+un plazo de 3 a 5 días hábiles, según la duración del audio y la disponibilidad de agenda.
+Todos los datos y audios se manejan bajo confidencialidad y reserva profesional.
+
+Tarifas Vigentes 2025
+Duración del Audio — Valor del Servicio
+1 hora de grabación...................................  $ 39.000 COP
+3 horas de grabación..................................  $ 95.000 COP
+Cada 30 minutos adicionales....................  $ 10.000 COP
+            `;
+
+            const lineas = doc.splitTextToSize(texto, 170);
+            doc.text(lineas, margen, y, { align: "left" });
+            y += lineas.length * 6 + 10;
+
+            // PIE DE FIRMA
+            doc.setFont("Times", "italic");
+            doc.text("Gracias por su confianza en los servicios de transcripción profesional.", 105, y, { align: "center" });
+            y += 8;
+            doc.setFont("Times", "bold");
+            doc.text("FRANCIA RAMÍREZ R.", 105, y, { align: "center" });
+            y += 6;
+            doc.setFont("Times", "normal");
+            doc.text("Transcriptora Profesional de Reuniones Grabadas", 105, y, { align: "center" });
+            y += 5;
+            doc.text("Especialista en Propiedad Horizontal – Cali, Colombia", 105, y, { align: "center" });
+
+            doc.save(`Cotización_${document.getElementById("nombre").value}.pdf`);
+        }
+    </script>
+</body>
+</html>
